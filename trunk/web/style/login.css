@@ -1,0 +1,57 @@
+.login-form{
+        position: absolute;
+        background:#000;
+        top:55%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        height:70%;
+        width:80%;
+        box-sizing: border-box;
+        display: flex;
+}
+
+.login-form>div{
+    height:100%
+}
+
+.login_graphic{
+    background:white;
+    width:40%;
+}
+
+.login_graphic>img{
+    width:100%;
+    height:100%;
+}
+
+.form-login{
+        background:#ffffff;
+        width:100%;
+        box-sizing: border-box;
+        position:relative;
+}
+
+.form-login>form{
+        position:absolute;
+        top:30%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:80%;
+}
+
+.form-login-title{
+        font-size: 2em;
+        font-weight:700;
+}
+
+.form-login-para{
+        font-size: 1.2em;
+        color:#A86AB7;
+        
+}
+
+.form-login-email>label, .form-login-password>label{
+        font-size: 1.5em;
+        font-weight: 700;
+}
+

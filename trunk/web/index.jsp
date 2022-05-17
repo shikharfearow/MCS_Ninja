@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import = "java.util.*" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +15,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+              <%
+         // NLogin redirected
+         String site = new String("/trunk/login.jsp");
+         response.setStatus(response.SC_MOVED_TEMPORARILY);
+         response.setHeader("Location", site); 
+      %>
     </body>
 </html>
