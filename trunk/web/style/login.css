@@ -1,3 +1,7 @@
+body{
+    overflow:hidden;
+}
+
 .login-form{
         position: absolute;
         background:#000;
