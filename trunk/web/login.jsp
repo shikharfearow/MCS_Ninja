@@ -19,7 +19,6 @@
                         <div class="login-form">
                                 <div class="login_graphic">
                                         
-
                                 </div>
                                 <div class="form-login">
                                         <form>
