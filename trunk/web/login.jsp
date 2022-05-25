@@ -15,6 +15,7 @@
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
+                <%@ include file="/dbconnect.jsp"%>
                 <div class="background">
                         <div class="login-form">
                                 <div class="login_graphic">

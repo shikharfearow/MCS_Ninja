@@ -16,11 +16,7 @@ body{
 
 .login-form>div{
     height:100%;
-}
 
-.login_graphic{
-    background: url("C:\Shikhar\Project_Ninja\repo\trunk\web\login_res\login_graph.png");
-    height:100%;
 }
 
 .form-login{
@@ -36,6 +32,11 @@ body{
         left:50%;
         transform:translate(-50%,-50%);
         width:80%;
+}
+
+.login_graphic{
+        width:40%;
+        background:#fff;
 }
 
 .form-login-title{
