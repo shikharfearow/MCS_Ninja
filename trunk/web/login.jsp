@@ -15,11 +15,16 @@
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
-                <%@ include file="/dbconnect.jsp"%>
+                <%@include  file="/dbconnect.jsp" %>
                 <div class="background">
                         <div class="login-form">
                                 <div class="login_graphic">
-                                        
+                                 <%
+                                        rs = stmt.executeQuery("Select * from user");
+                                        while(rs.next()){
+                                                out.print("<h1>"+rs.getString("name")+"</h1>");
+                                        } 
+                                 %>
                                 </div>
                                 <div class="form-login">
                                         <form>
@@ -43,9 +48,12 @@
                                                     <input type="submit" value="Submit">
                                                 </div>
                                         </form>
+                                    
                                 </div>
                         </div>
                 </div>
                 
         </body>
 </html>
+<%@ include file="module/footer.jsp"%>
+
