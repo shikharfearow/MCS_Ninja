@@ -9,13 +9,15 @@
 <html>
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>Login Page</title>
+                <title>User Page</title>
+                <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/common.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
                 <%@include  file="/dbconnect.jsp" %>
+                <div class="container">
                 <form>
                     <div class="form-user-name">
                         <label for="name">Name</label>
@@ -49,6 +51,7 @@
                         <input type="submit" value="Submit">
                     </div>
             </form>
+                </div>
         </body>
 </html>
 <%@ include file="module/footer.jsp"%>

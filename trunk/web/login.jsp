@@ -22,14 +22,16 @@
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
                 <script src="script/login_validation.js"></script>
         </head>
-        <body >
+        <body class="o-hidden">
                 <%@include  file="/module/nav_bar.jsp" %>
                 <%@include  file="/dbconnect.jsp" %>
                 <div class="background">
                         <div class="login-form">
                                 <div class="login_graphic">
+                                    <img src="login_res/login_graph.png" alt=""/>
                                 </div>
                                 <div class="form-login">
+                                    <div class="form-container">
                                     <form action="backend/db_login.jsp" method="GET">
                                                 <div class="form-login-intro">
                                                         <p class="form-login-title">
@@ -40,18 +42,18 @@
                                                         </p>
                                                 </div>
                                                 <div class="form-login-email">
-                                                       <label>email</label>
+                                                       <label for="email">Email</label>
                                                        <input type="email" name="email" id="email"> 
                                                 </div>
                                                 <div class="form-login-password">
-                                                        <label>password</label>
+                                                        <label for="password">Password</label>
                                                         <input type="password" name="password" id="password">
                                                 </div>
                                                 <div class="form-login-submit">
                                                     <input type="submit" value="Submit" id="submit_btn">
                                                 </div>
                                         </form>
-                                    
+                                    </div>
                                 </div>
                         </div>
                 </div>

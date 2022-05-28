@@ -10,23 +10,19 @@
 <html>
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>Login Page</title>
+                <title>Bug Page</title>
+                <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/common.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
                 <%@include  file="/dbconnect.jsp" %>
-
+                <div class="container">
                 <form>
                     <div class="form-bug-name">
                         <label for="name">Name</label>
                         <input type="text" name="name"> 
-                    </div>
-                    <div class="form-bug-Detail">
-                       <label for="Detail">Detail</label>
-                       <textarea id="Detail" name="Detail">
-                       </textarea>
                     </div>
                     <div class="form-bug-register_date">
                        <label for="register_date">Register Date</label>
@@ -64,10 +60,15 @@
                         <label for="priority">Priority</label>
                         <select name="priority">
                             <option value="">Select</option>
-                            <option value="1">High<option>
+                            <option value="1">High</option>
                             <option value="2">Medium</option>
-                            <option value="3">Low<option>
+                            <option value="3">Low</option>
                         </select>
+                    </div>
+                    <div class="form-bug-Detail">
+                       <label for="Detail">Detail</label>
+                       <textarea id="Detail" name="Detail">
+                       </textarea>
                     </div>
                     <div class="form-bug-comment">
                         <label for="comment">Comment</label>
@@ -81,7 +82,7 @@
                         <input type="submit" value="Submit">
                     </div>
                 </form>
-                
+                </div>
         </body>
 </html>
 <%@ include file="module/footer.jsp"%>

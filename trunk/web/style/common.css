@@ -1,0 +1,58 @@
+.container{
+        max-width: 1320px;
+}
+.container form{
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+.container form div{
+    display: block;
+    position: relative;
+    width: 46%;
+    float: left;
+    padding: 15px 25px;
+}
+input,select,textArea{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    background-color: #C4C4C4;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input[type=button],input[type=submit]{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #2F2E41;
+    background-clip: padding-box;
+    border: 1px solid #2F2E41;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 20px;
+}
+form label{
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Segoe UI-MONOSPACE;
+}
