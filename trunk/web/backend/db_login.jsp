@@ -13,6 +13,7 @@
                         session.setAttribute("name",rs.getString("name"));
                         session.setAttribute("email",rs.getString("email"));
                         session.setAttribute("role",rs.getString("roleid"));
+                        session.setAttribute("id",rs.getString("id"));
                 }
                 else{
                         response.setStatus(response.SC_MOVED_TEMPORARILY);

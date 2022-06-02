@@ -19,18 +19,18 @@
                 <%@include  file="/module/nav_bar.jsp" %>
                 <%@include  file="/dbconnect.jsp" %>
                 <div class="container">
-                <form>
+                    <form action="backend/db_add_bug.jsp" method="post">
                     <div class="form-bug-name">
                         <label for="name">Name</label>
                         <input type="text" name="name"> 
                     </div>
                     <div class="form-bug-register_date">
                        <label for="register_date">Register Date</label>
-                       <input type="datetime" name="register_date"> 
+                       <input type="date" name="register-date"> 
                     </div>
                     <div class="form-bug-solve-date">
                        <label for="solve-date">Solve Date</label>
-                       <input type="datetime" name="solve-date"> 
+                       <input type="date" name="solve-date"> 
                     </div>
                     <div class="form-bug-status">
                         <label for="status">Status</label>
@@ -64,6 +64,18 @@
                             <option value="2">Medium</option>
                             <option value="3">Low</option>
                         </select>
+                    </div>
+                     <div class="form-bug-assigned-assign">
+                        <label for="Assign">Assign</label>
+                        <select name="assign">
+                            <option value="">select</option>
+                            <%
+                                rs = stmt.executeQuery("Select * from user INNER JOIN role ON role.id=user.roleid where role.name!='admin'");
+                                while(rs.next()){
+                                    out.print("<option value='"+rs.getString("user.id")+"'>"+rs.getString("user.name")+"</option>");
+                                } 
+                            %>
+                        </select> 
                     </div>
                     <div class="form-bug-Detail">
                        <label for="Detail">Detail</label>

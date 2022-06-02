@@ -18,7 +18,7 @@
                 <%@include  file="/module/nav_bar.jsp" %>
                 <%@include  file="/dbconnect.jsp" %>
                 <div class="container">
-                <form>
+                    <form action="backend/db_add_project.jsp" method="post">
                     <div class="form-project-name">
                         <label for="name">Name</label>
                         <input type="text" name="name"> 
@@ -41,7 +41,7 @@
                         </select>
                     </div>
                     <div class="form-project-phase">
-                       <label for="phase">Tech</label>                                              
+                       <label for="phase">Phase</label>                                              
                        <select name="phase">
                            <option value="">Select</option>
                            <option value="SIT">SIT</option>

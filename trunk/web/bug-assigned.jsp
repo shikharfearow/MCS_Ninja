@@ -31,18 +31,6 @@
                             %>
                         </select>
                     </div>
-                    <div class="form-bug-assigned-assign">
-                        <label for="Assign">Assign</label>
-                        <select name="Assign">
-                            <option value="">select</option>
-                            <%
-                                rs = stmt.executeQuery("Select * from user INNER JOIN role ON role.id=user.roleid where role.name!='admin'");
-                                while(rs.next()){
-                                    out.print("<option value='"+rs.getString("user.id")+"'>"+rs.getString("user.name")+"</option>");
-                                } 
-                            %>
-                        </select> 
-                    </div>
                     <div class="form-user-submit">
                         <input type="submit" value="Submit">
                     </div>

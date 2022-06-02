@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="navbar">
-            <p class="navbar-title">ninja.<p>
+            <p class="navbar-title">ninja.</p>
         </div>
     </body>
 </html>
