@@ -10,9 +10,9 @@
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Project Page</title>
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/common.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
-                <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
@@ -23,14 +23,6 @@
                         <label for="name">Name</label>
                         <input type="text" name="name"> 
                     </div>
-                    <div class="form-project-Start-date">
-                       <label for="Start-date">Start Date</label>
-                       <input type="Date" name="Start-date"> 
-                    </div>
-                    <div class="form-project-End-date">
-                       <label for="End-date">End Date</label>
-                       <input type="Date" name="End-date"> 
-                    </div>
                     <div class="form-project-Priority">
                         <label for="priority">Priority</label>
                         <select name="priority">
@@ -40,6 +32,15 @@
                             <option value="3">Low</option>
                         </select>
                     </div>
+                    <div class="form-project-Start-date">
+                       <label for="Start-date">Start Date</label>
+                       <input type="Date" name="Start-date"> 
+                    </div>
+                    <div class="form-project-End-date">
+                       <label for="End-date">End Date</label>
+                       <input type="Date" name="End-date"> 
+                    </div>
+
                     <div class="form-project-phase">
                        <label for="phase">Phase</label>                                              
                        <select name="phase">
@@ -51,10 +52,14 @@
                            <option value="Live">Live</option>
                        </select>
                     </div>
-                    <div class="form-project-file">
+                    <div class="form-bug-Detail">
+                       <label for="detail">Detail</label>
+                       <textarea id="Detail" name="detail"></textarea>
+                    </div>
+                    <!--<div class="form-project-file">
                         <label for="file">File</label>
                         <input type="file" name="file">
-                    </div>
+                    </div>-->
                     <div class="form-project-submit">
                         <input type="submit" value="Submit">
                     </div>

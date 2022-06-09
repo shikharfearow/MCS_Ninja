@@ -10,9 +10,9 @@
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Bug Assigned Page</title>
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/common.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
-                <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>

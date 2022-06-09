@@ -20,7 +20,7 @@
         String jod = (String)request.getParameter("jod");
         String emp_code = name.substring(0,3) + phone.substring(phone.length()-3);
         String query = "insert into user (name,email,password,roleid,phone,active,emp_code,emp_designation,joining_date) values('" + 
-                                name + "','" + email +"','" + pass +"','" +role +"','" + phone + "','" + 1 + "','" + emp_code + "','" +emp_des +"','" + jod + "')" ;
+                                name + "','" + email +"','" + pass +"','" +role +"','" + phone + "',b'1','" + emp_code + "','" +emp_des +"','" + jod + "')" ;
         stmt.executeUpdate(query);
         response.setStatus(response.SC_MOVED_TEMPORARILY);
         response.setHeader("Location", url); 

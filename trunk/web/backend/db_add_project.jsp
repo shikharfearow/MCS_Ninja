@@ -17,8 +17,10 @@
         String priority = (String)request.getParameter("priority");
         String file = (String)request.getParameter("file");
         String phase = (String)request.getParameter("phase");
-        String query = "insert into project (name,start_date,end_date,priority,tech,phase) values('" + 
-                                name + "','" + start_date +"','" + end_date +"','" +priority +"','" + "JSP" + "','" + phase  + "')" ;
+        String detail=(String)request.getParameter("detail");
+        
+        String query = "insert into project (name,start_date,end_date,priority,tech,phase,detail) values('" + 
+                                name + "','" + start_date +"','" + end_date +"','" +priority +"','" + "JSP" + "','" + phase  + "','"+ detail +"')" ;
         stmt.executeUpdate(query);
         response.setStatus(response.SC_MOVED_TEMPORARILY);
         response.setHeader("Location", url); 

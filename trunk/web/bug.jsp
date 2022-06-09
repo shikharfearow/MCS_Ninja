@@ -11,9 +11,9 @@
         <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Bug Page</title>
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/common.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
-                <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
         </head>
         <body >
                 <%@include  file="/module/nav_bar.jsp" %>
@@ -23,14 +23,6 @@
                     <div class="form-bug-name">
                         <label for="name">Name</label>
                         <input type="text" name="name"> 
-                    </div>
-                    <div class="form-bug-register_date">
-                       <label for="register_date">Register Date</label>
-                       <input type="date" name="register-date"> 
-                    </div>
-                    <div class="form-bug-solve-date">
-                       <label for="solve-date">Solve Date</label>
-                       <input type="date" name="solve-date"> 
                     </div>
                     <div class="form-bug-status">
                         <label for="status">Status</label>
@@ -44,6 +36,15 @@
                             <option value="Retest">Retest</option>
                         </select>
                     </div>
+                    <div class="form-bug-register_date">
+                       <label for="register_date">Register Date</label>
+                       <input type="date" name="register-date"> 
+                    </div>
+                    <div class="form-bug-solve-date">
+                       <label for="solve-date">Solve Date</label>
+                       <input type="date" name="solve-date"> 
+                    </div>
+                    
                     <div class="form-bug-project">
                         <label for="project">Project</label>
                         <select name="project">
@@ -65,7 +66,16 @@
                             <option value="3">Low</option>
                         </select>
                     </div>
-                     <div class="form-bug-assigned-assign">
+                     
+                    <div class="form-bug-Detail">
+                       <label for="Detail">Detail</label>
+                       <textarea id="Detail" name="Detail"></textarea>
+                    </div>
+                    <div class="form-bug-comment">
+                        <label for="comment">Comment</label>
+                        <textarea name="comment"></textarea>
+                    </div>
+                    <div class="form-bug-assigned-assign">
                         <label for="Assign">Assign</label>
                         <select name="assign">
                             <option value="">select</option>
@@ -77,19 +87,10 @@
                             %>
                         </select> 
                     </div>
-                    <div class="form-bug-Detail">
-                       <label for="Detail">Detail</label>
-                       <textarea id="Detail" name="Detail">
-                       </textarea>
-                    </div>
-                    <div class="form-bug-comment">
-                        <label for="comment">Comment</label>
-                        <textarea name="comment"></textarea>
-                    </div>
-                    <div class="form-bug-file">
+                    <!--<div class="form-bug-file">
                         <label for="file">File</label>
                         <input type="file" name="file">
-                    </div>
+                    </div>-->
                     <div class="form-bug-submit">
                         <input type="submit" value="Submit">
                     </div>

@@ -18,6 +18,7 @@
 
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Login Page</title>
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
                 <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/login.css"/>
                 <script src="script/login_validation.js"></script>
