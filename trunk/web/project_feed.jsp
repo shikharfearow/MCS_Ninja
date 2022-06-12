@@ -19,7 +19,13 @@
     <body>
         <div class="background2">        
             <div class="salute">
-                <h3>Welcome, <%=session.getAttribute("name")%></h3>
+                <h3 style="
+    font-size: larger;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px;
+">Welcome, <%=session.getAttribute("name")%></h3>
             </div>
             <% if(session.getAttribute("role").equals("2")){ %>
                 <div class="width-45 pdlr25">
@@ -75,7 +81,7 @@
                             while(rs.next()){
                     %>
                     
-                    <div class="bug_item panel" onclick="showBugModel(<%=rs.getString("id")%>,'<%=rs.getString("name")%>','<%=rs.getString("register_date")%>','<%=rs.getString("priority")%>','<%=rs.getString("solve_date")%>','<%=rs.getString("project.name")%>','<%=rs.getString("user.id")%>','<%=rs.getString("user.name")%>','<%=rs.getString("detail")%>','<%=rs.getString("comment")%>'),'<%=rs.getString("status")%>'" >
+                    <div class="bug_item panel" onclick="showBugModel(<%=rs.getString("id")%>,'<%=rs.getString("name")%>','<%=rs.getString("register_date")%>','<%=rs.getString("priority")%>','<%=rs.getString("solve_date")%>','<%=rs.getString("project.name")%>','<%=rs.getString("user.id")%>','<%=rs.getString("user.name")%>','<%=rs.getString("detail")%>','<%=rs.getString("comment")%>','<%=rs.getString("status")%>')" >
                             <h3>BUG ID:<%=rs.getString("id")%></h3>
                             <h3><%=rs.getString("name")%></h3>
                             <p>Start Date:<%=rs.getString("register_date")%></p>
@@ -100,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div class="model" id="projectModel"style="display: none" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="model" id="projectModel" style="display: none" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
             <div class="modal-dialog">
                <div class="headder">
                    <span aria-hidden="true" onclick="hideModel()">×</span>
@@ -115,7 +121,7 @@
                 </div>
             </div>        
         </div>
-        <div class="model" id="bugModel"style="display: none" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="model" id="bugModel" style="display: none" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
             <div class="modal-dialog">
                <div class="headder">
                    <span aria-hidden="true" onclick="hideModel()">×</span>
@@ -127,8 +133,35 @@
                     <div><label>Priority : </label><span id="bpriority">High</span></div>
                     <div><label>Start Date : </label><span id="bsdate">4/jan/22</span></div>
                     <div><label>ETA : </label><span id="bedate">10/jan/22</span></div>
-                    <div><label>Assigned to : </label><span id="bassignedto">10/jan/22</span></div>
-                    <div><label>Status : </label><span id="bstatus">New</span></div>
+                    <form action="backend/db_updateAssigned.jsp" method="post">
+                    <div><label>Assigned to : </label>
+                        <input type="hidden" id="bug_id2" name="bug_id2">
+                            <select name="assign" id="bassignedto" onchange="this.form.submit();" >
+                         
+                            <%
+                                ResultSet rs2 = stmt.executeQuery("Select * from user INNER JOIN role ON role.id=user.roleid where role.name!='admin'");
+                                while(rs2.next()){
+                                    out.print("<option value='"+rs2.getString("user.id")+"'>"+rs2.getString("user.name")+"</option>");
+                                } 
+                            %>
+                        </select> 
+
+                    </div>
+                                                </form>
+                    <div>
+                        <form action="backend/db_updateStatus.jsp" method="POST">
+                            <input type="hidden" id="bug_id" name="bug_id">
+                            <label>Status : </label>
+                        <select name="status" id="bstatus" onchange="this.form.submit();" >
+                            <option value="New">New</option>
+                            <option value="Assigned">Assigned</option>
+                            <option value="Open">Open</option>
+                            <option value="Fixed">Fixed</option>
+                            <option value="Pending retest">Pending retest</option>
+                            <option value="Retest">Retest</option>
+                        </select>
+                        </form>
+                    </div>
                     <div class="textArea"><label>Detail : </label><br><textarea id="bdetail" disabled="disabled"></textarea></div>
                     <div class="textArea"><label>Comment : </label><br><textarea id="bcomment" disabled="disabled"></textarea></div>
                 </div>
@@ -143,11 +176,13 @@
             document.getElementById("bpname").innerHTML=project;
             document.getElementById("bsdate").innerHTML=startDate;
             document.getElementById("bedate").innerHTML=ETA;
-            document.getElementById("bassignedto").innerHTML=assignedTo;
+            document.getElementById("bassignedto").value=assignedToid;
             document.getElementById("bpriority").innerHTML=getPriority(priority);
             document.getElementById("bdetail").value=details;
             document.getElementById("bcomment").value=comment;
-            document.getElementById("bstatus").innerHTML=status;
+            document.getElementById("bstatus").value=status;
+            document.getElementById("bug_id").value=id;
+            document.getElementById("bug_id2").value=id;
         };
         var showProjectModel=function(id,name,startDate,priority,ETA,details){
             document.getElementById("projectModel").style.display = 'block';
@@ -173,5 +208,6 @@
                 return "Low";
             }
         }
+        
     </script>
 </html>

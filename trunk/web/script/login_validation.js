@@ -11,7 +11,10 @@ document.getElementById("password").onchange = function (){
 function validateMail(email){
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(!email.match(mailformat)){
-        alert("EMAIL IS NOT CORRECT");
+        document.getElementById("email_check_msg").style.display = "block";
+    }
+    else{
+        document.getElementById("email_check_msg").style.display = "none";
     }
 }
 

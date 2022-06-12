@@ -8,14 +8,6 @@
 <html>
     <head>
 
-<%if(session.getAttribute("log_error")!=null){%>
-<script>
-            alert("wrong credentials");
-</script>
-    <%}
-%>
-
-
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                 <title>Login Page</title>
                 <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
@@ -48,12 +40,16 @@
                                                 </div>
                                                 <div class="form-login-password">
                                                         <label for="password">Password</label>
-                                                        <input type="password" name="password" id="password">
+                                                        <input type="password" name="password" id="pass">
                                                 </div>
                                                 <div class="form-login-submit">
                                                     <input type="submit" value="Submit" id="submit_btn">
                                                 </div>
                                         </form>
+                                        <div class="message"  >
+                                            <h3 id="wrng_cred" style="display:none">Wrong credentials. Please check login email or password. </h3>
+                                            <h3 id="email_check_msg" style="display:none">Email format is not correct.</h3>
+                                        </div>
                                     </div>
                                 </div>
                         </div>
@@ -62,3 +58,12 @@
         </body>
 </html>
 <%@ include file="module/footer.jsp"%>
+<%if(session.getAttribute("log_error")!=null){%>
+<script>
+        function showCredMsg(){
+                document.getElementById("wrng_cred").style.display="block";
+        }
+        showCredMsg();
+</script>
+    <%}
+%>
