@@ -25,7 +25,7 @@
     width: 100%;
     text-align: center;
     padding: 20px 0px;
-">Welcome, <%=session.getAttribute("name")%></h3>
+    ">Welcome, <%out.println(session.getAttribute("name"));%></h3>
             </div>
             <% if(session.getAttribute("role").equals("2")){ %>
                 <div class="width-45 pdlr25">
