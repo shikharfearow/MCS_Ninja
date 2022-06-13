@@ -12,7 +12,7 @@
         <title>Project/Bug Feed</title>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
         <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
-  
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <%@include  file="/module/nav_bar.jsp" %>
     <%@include file="/dbconnect.jsp" %>
@@ -40,8 +40,29 @@
                                 try {
                                     rs = stmt.executeQuery("Select * from project");
                                     while(rs.next()){
+                                         rs3 = stmt2.executeQuery("SELECT priority,count(*) as counting FROM bug WHERE project_id ="+ rs.getString("id") +" GROUP BY priority");    
+                                         String s = "{";
+                                         while(rs3.next()){
+                                                if(rs3.getString("priority").equals("1"))
+                                                    s+="high";
+                                                if(rs3.getString("priority").equals("2"))
+                                                    s+="medium";
+                                                if(rs3.getString("priority").equals("3"))
+                                                    s+="low";
+                                                s += ":";
+                                                s += rs3.getString("counting")+",";
+                                        }
+                                        s += "}";
+                                         rs3 = stmt2.executeQuery("SELECT status,count(*) as counting FROM bug WHERE project_id ="+ rs.getString("id") +" GROUP BY status");    
+                                         String s2 = "{";
+                                         while(rs3.next()){
+                                                s2 += rs3.getString("status");
+                                                s2 += ":";
+                                                s2 += rs3.getString("counting")+",";
+                                        }
+                                        s2 += "}";
                             %>
-                            <div class="project_item panel" onclick="showProjectModel(<%=rs.getString("id")%>,'<%=rs.getString("name")%>','<%=rs.getString("start_date")%>','<%=rs.getString("priority")%>','<%=rs.getString("end_date")%>','<%=rs.getString("details")%>')">
+                            <div class="project_item panel" onclick="showProjectModel( '<%=rs.getString("id")%>','<%=rs.getString("name")%>','<%=rs.getString("start_date")%>','<%=rs.getString("priority")%>','<%=rs.getString("end_date")%>','<%=rs.getString("details")%>',<%=s%>,<%=s2%>)">
                                     <h3>PROJECT ID:<%=rs.getString("id")%></h3>
                                     <h3><%=rs.getString("name")%></h3>
                                     <p>ETA:<%=rs.getString("end_date")%></p>
@@ -54,13 +75,15 @@
                                             out.println("<span style='color:orange'>Medium</span>");
                                         }
                                         else if(rs.getString("priority").equals("3")){
-                                            out.println("<span style='color:bllue'>Low</span>");
+                                            out.println("<span style='color:blue'>Low</span>");
                                         }
                                     %></p>
                                 </div>
-                            <%}}catch(Exception e){ %>
-                                <div>Something went wrong for project feed.</div>
-                            <%}%>
+                            <%
+ 
+                                }}catch(Exception e){ %>
+                                
+                            <%out.println(e);}%>
                         </div>
                     </div>
                 </div>
@@ -118,8 +141,17 @@
                     <div><label>ETA : </label><span id="pedate">10/jan/22</span></div>
                     <div><label>Priority : </label><span id="ppriority">High</span></div>
                     <div class="textArea"><label>Detail : </label><br><textarea id="pdetail" disabled="disabled"></textarea></div>
+                    <div style="width:100%;height:220px">
+                        <div class="chart" style="height:200px">
+                            <h4 style="width:100%;text-align:center;">Count of bugs priority wise</h4>
+                            <canvas id="myChart" style="height:100%"></canvas></div>
+                        <div class="chart" style="height:200px">
+                            <h4 style="width:100%;text-align:center;">Count of bugs status wise</h4>
+                            <canvas id="myChart2" style="height:100%"></canvas>
+                                </div>
+                        </div>
+            </div>
                 </div>
-            </div>        
         </div>
         <div class="model" id="bugModel" style="display: none" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
             <div class="modal-dialog">
@@ -164,11 +196,18 @@
                     </div>
                     <div class="textArea"><label>Detail : </label><br><textarea id="bdetail" disabled="disabled"></textarea></div>
                     <div class="textArea"><label>Comment : </label><br><textarea id="bcomment" disabled="disabled"></textarea></div>
+                    
                 </div>
             </div>        
         </div>
     </body>
     <script>
+        var myChart = null;
+        var config = null;
+        var canvas = null;
+        var myChart2 = null;
+        var config2 = null;
+        var canvas2 = null;
         var showBugModel=function(id,name,startDate,priority,ETA,project,assignedToid,assignedTo,details,comment,status){
             document.getElementById("bugModel").style.display = 'block';
             document.getElementById("bid").innerHTML=id;
@@ -184,7 +223,7 @@
             document.getElementById("bug_id").value=id;
             document.getElementById("bug_id2").value=id;
         };
-        var showProjectModel=function(id,name,startDate,priority,ETA,details){
+        var showProjectModel=function(id,name,startDate,priority,ETA,details,s,s2){
             document.getElementById("projectModel").style.display = 'block';
             document.getElementById("pid").innerHTML=id;
             document.getElementById("pname").innerHTML=name;
@@ -192,12 +231,14 @@
             document.getElementById("pedate").innerHTML=ETA;
             document.getElementById("ppriority").innerHTML=getPriority(priority);
             document.getElementById("pdetail").value=details;
-            
-            
+            console.log(s2);
+            analytics(Object.keys(s),Object.values(s),Object.keys(s2),Object.values(s2));
         };
         var hideModel=function(){
             document.getElementById("projectModel").style.display = 'none';
             document.getElementById("bugModel").style.display = 'none';
+            myChart.destroy();
+            myChart2.destroy();
         };
         var getPriority= function(priority){
             if(priority==="1"){
@@ -209,5 +250,39 @@
             }
         }
         
+        var analytics = function(keys,values,keys2,values2){
+                
+                canvas = document.getElementById("myChart");
+                canvas2 = document.getElementById("myChart2");
+                config = {
+                                        type:"bar",
+                                        data: {
+                                                    labels:keys,
+                                                    datasets: [{
+                                                                    label:"bug count", data: values, 
+                                                                    backgroundColor : ["rgba(255,159,64,0.5)","rgba(159,255,64,0.5)","rgba(159,64,255,0.5)"]
+                                                    }]                                            
+                                        },
+                                                                                           options: {
+                                                                    maintainAspectRatio: false
+                                                    } 
+                };
+                config2 = {
+                                        type:"doughnut",
+                                        data: {
+                                                    labels:keys2,
+                                                    datasets: [{
+                                                                    label:"Count of bugs status wise", data: values2, 
+                                                                    backgroundColor : ["rgba(255,159,64,0.5)","rgba(159,255,64,0.5)","rgba(159,64,255,0.5)","rgba(255,20,165,0.5)","rgba(159,20,80,0.5)"]
+                                                    }]
+                                        },
+                                                                                           options: {
+                                                                    maintainAspectRatio: false
+                                                    }
+                };
+
+                myChart = new Chart(canvas,config); 
+                myChart2 = new Chart(canvas2,config2); 
+        }
     </script>
 </html>
