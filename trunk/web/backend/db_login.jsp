@@ -25,7 +25,13 @@
                         response.setHeader("Location", "/trunk/login.jsp"); 
                         session.setAttribute("log_error","yes");
                 }
-        }}
+        }
+        else{
+                        response.setStatus(response.SC_MOVED_TEMPORARILY);
+                        response.setHeader("Location", "/trunk/login.jsp"); 
+                        session.setAttribute("log_error","yes");
+        }
+        }
         catch(Exception e){
             out.println(e);
         }
