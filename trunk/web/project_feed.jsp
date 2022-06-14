@@ -13,6 +13,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/login_res/ninja.jpg">
         <link rel="stylesheet" type="text/css" href=" ${pageContext.request.contextPath}/style/general.css"/>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
     </head>
     <%@include  file="/module/nav_bar.jsp" %>
     <%@include file="/dbconnect.jsp" %>
