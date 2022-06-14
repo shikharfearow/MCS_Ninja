@@ -57,7 +57,7 @@
                                          rs3 = stmt2.executeQuery("SELECT status,count(*) as counting FROM bug WHERE project_id ="+ rs.getString("id") +" GROUP BY status");    
                                          String s2 = "{";
                                          while(rs3.next()){
-                                                s2 += rs3.getString("status");
+                                                s2 += rs3.getString("status").replace(" ","_");
                                                 s2 += ":";
                                                 s2 += rs3.getString("counting")+",";
                                         }
@@ -232,7 +232,6 @@
             document.getElementById("pedate").innerHTML=ETA;
             document.getElementById("ppriority").innerHTML=getPriority(priority);
             document.getElementById("pdetail").value=details;
-            console.log(s2);
             analytics(Object.keys(s),Object.values(s),Object.keys(s2),Object.values(s2));
         };
         var hideModel=function(){
@@ -277,7 +276,7 @@
                                                                     backgroundColor : ["rgba(255,159,64,0.5)","rgba(159,255,64,0.5)","rgba(159,64,255,0.5)","rgba(255,20,165,0.5)","rgba(159,20,80,0.5)"]
                                                     }]
                                         },
-                                                                                           options: {
+                                        options: {
                                                                     maintainAspectRatio: false
                                                     }
                 };
