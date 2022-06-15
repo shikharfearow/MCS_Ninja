@@ -19,7 +19,7 @@
         String phase = (String)request.getParameter("phase");
         String detail=(String)request.getParameter("detail");
         
-        String query = "insert into project (name,start_date,end_date,priority,tech,phase,detail) values('" + 
+        String query = "insert into project (name,start_date,end_date,priority,tech,phase,details) values('" + 
                                 name + "','" + start_date +"','" + end_date +"','" +priority +"','" + "JSP" + "','" + phase  + "','"+ detail +"')" ;
         stmt.executeUpdate(query);
         response.setStatus(response.SC_MOVED_TEMPORARILY);
