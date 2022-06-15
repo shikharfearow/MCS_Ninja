@@ -9,7 +9,7 @@
 <%@page import="java.util.*"%>
 
 <%
-    String url = "/trunk/project_feed.jsp";
+    String url = "/ninja/project_feed.jsp";
     try{
         String name = (String)request.getParameter("name");
         String start_date = (String)request.getParameter("Start-date");

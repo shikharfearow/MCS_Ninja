@@ -1,5 +1,5 @@
 <%
-    String url = "/trunk/";
+    String url = "/ninja/";
     
     try{
     if(session.getAttribute("role") == null){

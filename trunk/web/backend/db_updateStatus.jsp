@@ -3,7 +3,7 @@
 <%@page import="java.util.*"%>
 
 <%
-    String url = "/trunk/project_feed.jsp";
+    String url = "/ninja/project_feed.jsp";
     try{
         String status = (String)request.getParameter("status");
         String id = (String)request.getParameter("bug_id");

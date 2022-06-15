@@ -4,11 +4,11 @@
       String pass = (String)request.getParameter("password");
       if(email.equals("") || pass.equals("")){
                                     response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "/trunk/login.jsp"); 
+                        response.setHeader("Location", "/ninja/login.jsp"); 
                         session.setAttribute("log_error","yes");
         }
       String query = "Select * from user where email='"+email+"'";
-      String url = "/trunk/home.jsp";
+      String url = "/ninja/home.jsp";
       rs = stmt.executeQuery(query);
       try{
       if(rs.next()){
@@ -22,13 +22,13 @@
                 }
                 else{
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "/trunk/login.jsp"); 
+                        response.setHeader("Location", "/ninja/login.jsp"); 
                         session.setAttribute("log_error","yes");
                 }
         }
         else{
                         response.setStatus(response.SC_MOVED_TEMPORARILY);
-                        response.setHeader("Location", "/trunk/login.jsp"); 
+                        response.setHeader("Location", "/ninja/login.jsp"); 
                         session.setAttribute("log_error","yes");
         }
         }

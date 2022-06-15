@@ -17,7 +17,7 @@
     <body>
               <%
          // NLogin redirected
-         String site = new String("/trunk/login.jsp");
+         String site = new String("/ninja/login.jsp");
          response.setStatus(response.SC_MOVED_TEMPORARILY);
          response.setHeader("Location", site); 
       %>
